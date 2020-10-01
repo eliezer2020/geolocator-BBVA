@@ -24,17 +24,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+TextStyle customText = TextStyle(fontSize: 18);
 final positionWidget = StreamBuilder<Position>(
     stream: getPositionStream(),
     initialData: null,
     builder: (context, AsyncSnapshot<Position> snapshot) {
       if (snapshot.hasError || snapshot.data == null) {
-        return Center(child: Text("please verify the connection..."));
+        return Center(
+            child: Text(
+          "please verify the connection...",
+          style: customText,
+        ));
       } else {
         return Center(
-          child: Text(snapshot.data.latitude.toString() +
-              ', ' +
-              snapshot.data.longitude.toString()),
+          child: Text(
+            snapshot.data.latitude.toString() +
+                ', ' +
+                snapshot.data.longitude.toString(),
+            style: customText,
+          ),
         );
       }
     });
@@ -58,7 +66,7 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             Text(
               "My position: ",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
             ),
             positionWidget,
           ],
